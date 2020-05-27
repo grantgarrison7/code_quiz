@@ -3,22 +3,47 @@
 <head>
 	<title>  Code Quiz      
     </title>
+
+
+</head>
+<!--Set style within html document between head and body-->
 <style>
 
 
-h1 {
-    font-size: 28px;
-    color: purple;
-}
-
-p {
-    color: green;
-}
-</style>
-
-</head>
+    h1 {
+        font-size: 28px;
+        color: purple;
+    }
+    
+    p {
+        color: green;
+    }
+    </style>
 <body>
+    
     <h1>Code Quiz</h1>
-    <p>hello</p>
+    <div>Click "Go!" to start the code quiz.</div>
+    <div id = "start-button"></div>
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+    var startButton = $("<button>");
+        var codeQuestions = {
+            text: "How"
+        }
+        startButton.attr("class", "startBt")
+        var startPhrase = "Go!";
+        startButton.text(startPhrase);
+        $("#start-button").append(startButton);
+        $(".startBt").on("click", function(){
+            console.log("we have started");
+
+        });
+      });
+    </script>
+
+
 </body>
 </html>
