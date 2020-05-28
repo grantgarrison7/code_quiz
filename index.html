@@ -1,182 +1,113 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>  Code Quiz      
-    </title>
-</head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--Set style within html document between head and body-->
-<style>
-
-
-    h1 {
-        font-size: 28px;
-        color: purple;
-    }
-    
-    #start {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-        background: coral;
-        padding: 40px;
-        font-size: 40px;
-        border: 2px dotted black;
-        color: black;
-        cursor: pointer;
-    }
-    #show-questions {
-        display: none;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
-    }
-    </style>
-<body>
-    <div id = "clear">
-    <h1>Code Quiz</h1>
-    <div>Click "Go!" to start the code quiz.</div>
-
-    <div id = "start"></div>
-</div>
-    <div id = "questions">
-    <div id = "question-text"></div>
-    <div id = "answers"></div>
-
-</div>
-    
-    <script>
-
-    $(document).ready(function() {
-
-        var startButton = $("<button>");
-        startButton.attr("class", "startBt")
-        var startPhrase = "Go!";
-        startButton.text(startPhrase);
-        $("#start").append(startButton);
-        
-        var clearEl = document.querySelector("#clear")
-        var startBtn = document.querySelector("#start");
-        var questionEl = document.querySelector("#questions");
-        var tQuestionEl = document.querySelector("#question-text")
-        var answersEl = document.querySelector("#answers");
-       
-        var codeQuestions = [
-        {
-            questionAsked: "How should one reference an external script?",
-            answerChoices: [
-            "a) <usejavascript src = externalfile.js>",
-            "b) <javascriptelement src = externalfile.js>",
-            "c) <javascriptexternal src = externalfile.js>",
-            "d) <script src = externalfile.js>",
-            "e) <script external = externalfile.js>"
-        ],
-        questionAnswer: 3
-        },
-        {
-            questionAsked: "What kind of HTML element should one use for JavaScript",
-            answerChoices: [
-            "a) <script>",
-            "b) <nothing>",
-            "c) <javascriptelement>",
-            "d) <insert>",
-            "e) <usejavascript>"
-        ],
-        questionAnswer: 0
-        },
-        {
-            questionAsked: "How can one make comments while using JavaScript?",
-            answerChoices: [
-            "a) make the comment here",
-            "b) <make the comment here>",
-            "c) //make the comment here",
-            "d) !!make the comment here",
-            "e) (comment)make the comment here"
-        ],
-        questionAnswer: 2
-        },
-        {
-            questionAsked: "How does one call a function in JavaScript?",
-            answerChoices: [
-            "a) <function>",
-            "b) function()",
-            "c) function",
-            "d) function!",
-            "e) function(call)"
-        ],
-        questionAnswer: 1
-        },
-        {
-            questionAsked: "How would one round down in JavaScript?",
-            answerChoices: [
-            "a) math.under(number)",
-            "b) math.below(number)",
-            "c) math.round(number)",
-            "d) round.down(number)",
-            "e) math.floor(number)"
-        ],
-        questionAnswer: 4
-        },      
-    ];
-        
-    answersEl.addEventListener("click", function(event){
-        var element = event.target;
-        if (element.className === "item") {
-            console.log("Make sure this is item");
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+    <!-- Name of the webpage -->
+    <title>Code Quiz</title>
+    <!-- CSS formatting directly in the html document -->
+    <style>
+        /* Format the the entire webpage with the body */
+        body {
+            height: 100vh;
+            width: 100vw;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 36px;
+            line-height: 150%;
+            background-color: sandybrown;
         }
 
-    });
-        var cursor = 0;
-          var score = 0;
-          var interval = 0;
-        
-    //   function showQuestionData() {
-        
-    //       var question = codeQuestions[cursor];
-    //       answersEl.innerHTML = "";
-    //       questionEl.textContent =  + question.text;
-    //       questionEl.innerHTML = "HEllo";
-    // codeQuestions.forEach((currentQuestion, questionNumber) => {
-    // //<div class = "item" data-id = "1">Item 2</div>
-    // var shownChoice = $("<div>");
-    //     shownChoice.attr("class", "item");
-    //     shownChoice.attr("data-id", index);
-    //     shownchoice.text("choice");
-    //     //choicesEl.appendChild(choiceItem);
-    // });
-    //   }   
-    
-        // $(".startBt").on("click", function(){
-            //landingEl.style.display = "none";
-            //questionEL.style.display = "flex";
-            //show my first question
-            //display the question with the question number
-        //     console.log("we have started"); 
-        //         showQuestionData();
+        /* We use flexbox to center and align the content in columns */
+        #open,
+        #last {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            height: 100%;
+            width: 100%;
+        }
 
-        // });
-        
-        startBtn.addEventListener("click", function(event) {
-            clearEl.style.display = "none";
-            questionEl.style.display = "flex";
-            var currentQuestion = codeQuestions[0];
-            var displayQuestionText = currentQuestion.questionAsked;
-            displayAnswers = currentQuestion.answers;
-            console.log(currentQuestion.answers);
-            tQuestionEl.textContent = "1. " + displayQuestionText;
-            answersEl.textContent = displayAnswers;
-            // codeQuestions.answerChoices.forEach(function(choice){
-            //     var choiceItem = document.createElement("div");
-            //     choiceItem.setAttribute("class", "item");
-            //     choiceItem.textContent = choice;
-            //     answersEl.appendChild(choiceItem);
-            });
-        });
-    // });
-</script>
+        /* The last page must be set to none before transitioning to flex */
+        #last {
+            display: none;
+        }
+
+        /* Formatting for the buttons on the beginning and end pages */
+        .btn {
+            background: lawngreen;
+            padding: 80px;
+            font-size: 80px;
+            border: 10px solid darkgreen;
+            color: black;
+            cursor: pointer;
+        }
+
+        /* Formatting for the questions as they appear on the page */
+        #questionSet {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: darkorchid;
+            color: sandybrown;
+            padding: 30px;
+            border: 10px dotted darkmagenta;
+        }
+
+        /* The cursor will convert to a pointer while hovering over the clickable items */
+        .item {
+            cursor: pointer;
+        }
+
+        /* The timer formatting */
+        #timer {
+            background-color: lawngreen;
+            color: black;
+            padding: 40px;
+            font-size: 40px;
+            border: 10px solid darkgreen;
+        }
+
+        /* Spacing to separate text */
+        .text,
+        #your-score {
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- This div contains the content that will appear on the first page. -->
+    <div id="open">
+        <div class="text">
+            Welcome to the Code Quiz!
+        </div>
+        <!-- The button to begin the quiz -->
+        <button class="btn" id="start-btn">Go!</button>
+    </div>
+    <!-- This div contains the pages with question sets on them -->
+    <div id="questionSet">
+        <!-- The timer is initially set to 60 seconds -->
+        <div id="timer" data-time="60">60</div>
+        <div id="question-text"></div>
+        <div id="options">
+        </div>
+    </div>
+    <!-- The content on the final page of the quiz -->
+    <div id="last">
+        <div class="text">
+            <!-- Saves your score on the page -->
+            Your Score
+        </div>
+        <!-- This div contains the saved user-input initials and score -->
+        <div id="your-score">
+        </div>
+        <!-- The button to restart the code quiz from the initial page -->
+        <button class="btn" id="playAgain-btn">Try again?</button>
+    </div>
+    <!-- Script for javascript file -->
+    <script src="./script.js"></script>
 </body>
-</html>
