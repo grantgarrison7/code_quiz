@@ -81,11 +81,11 @@ startBtn.addEventListener("click", function (event) {
   startTimer();
 });
 function startTimer() {
-    //gets the time left on timer and ensures that time on timer remains an integer
+  //gets the time left on timer and ensures that time on timer remains an integer
   timeLeft = parseInt(timerEl.getAttribute("data-time"));
   interval = setInterval(function () {
     timeLeft--;
-        //conditional to ensure that there is still time left on the timer
+    //conditional to ensure that there is still time left on the timer
     if (timeLeft > 0) {
       timerEl.textContent = timeLeft;
     } else {
@@ -98,7 +98,7 @@ function startTimer() {
       initials = prompt(
         "Would you like to enter your initials to save your high score?"
       );
-//displays the score of 0 and initials because time ran out on the timer
+      //displays the score of 0 and initials because time ran out on the timer
       yourScoreEl.textContent = initials + " 0";
     }
     //sets my interval to remove a unit every second
@@ -106,7 +106,7 @@ function startTimer() {
 }
 
 function showQuestionData() {
-    //there are still more questions to show if conditional is true
+  //there are still more questions to show if conditional is true
   if (cursor < 5) {
     var question = questionSet[cursor];
     //ensures that optionsEl is empty
@@ -115,7 +115,7 @@ function showQuestionData() {
     questionTextEl.textContent = questionNumber + ". " + question.text;
     //Display options
     question.options.forEach(function (choice, index) {
-        // places the item choice in a div
+      // places the item choice in a div
       var choiceItem = document.createElement("div");
       choiceItem.setAttribute("class", "item");
       choiceItem.setAttribute("data-id", index);
@@ -124,7 +124,6 @@ function showQuestionData() {
     });
     //the user won if conditional is true
   } else if (score === 5) {
-
     initials = prompt(
       "Would you like to enter your initials to save your high score?"
     );
@@ -139,7 +138,6 @@ function showQuestionData() {
   }
   //the user completed the quiz but did not win
   else {
-
     initials = prompt(
       "Would you like to enter your initials to save your high score?"
     );
