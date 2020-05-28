@@ -90,11 +90,8 @@ function startTimer() {
       timerEl.textContent = timeLeft;
     } else {
       clearInterval(interval);
-
       questionSetEl.style.display = "none";
-
       lastEl.style.display = "flex";
-
       initials = prompt(
         "Would you like to enter your initials to save your high score?"
       );
@@ -127,27 +124,18 @@ function showQuestionData() {
     initials = prompt(
       "Would you like to enter your initials to save your high score?"
     );
-
     yourScoreEl.textContent = initials + " " + timeLeft;
-
     clearInterval(interval);
-
     questionSetEl.style.display = "none";
-
     lastEl.style.display = "flex";
-  }
-  //the user completed the quiz but did not win
-  else {
+  } else {
+    //the user completed the quiz but did not win
     initials = prompt(
       "Would you like to enter your initials to save your high score?"
     );
-
     yourScoreEl.textContent = initials + " 0";
-
     clearInterval(interval);
-
     questionSetEl.style.display = "none";
-
     lastEl.style.display = "flex";
   }
 }
