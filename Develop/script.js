@@ -72,6 +72,7 @@ var score = 0;
 var interval;
 var timeLeft = 60;
 var initials = "";
+var highScores = [];
 startBtn.addEventListener("click", function (event) {
   //clears the original page and sets the new one
   openEl.style.display = "none";
@@ -97,6 +98,13 @@ function startTimer() {
       );
       //displays the score of 0 and initials because time ran out on the timer
       yourScoreEl.textContent = initials + " 0";
+      var highScore = {
+        initials: initials,
+        score: 0,
+      }
+      highScores.push(highScore);
+      localStorage.setItem('highScores', JSON.stringify(highScores));
+      showHighScore = JSON.parse(localStorage.getItem('highScores'));
     }
     //sets my interval to remove a unit every second
   }, 1000);
@@ -124,19 +132,33 @@ function showQuestionData() {
     initials = prompt(
       "Would you like to enter your initials to save your high score?"
     );
-    yourScoreEl.textContent = initials + " " + timeLeft;
     clearInterval(interval);
     questionSetEl.style.display = "none";
     lastEl.style.display = "flex";
+    yourScoreEl.textContent = initials + " " + timeLeft;
+    var highScore = {
+      initials: initials,
+      score: timeLeft,
+    }
+    highScores.push(highScore);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    showHighScore = JSON.parse(localStorage.getItem('highScores'));
   } else {
     //the user completed the quiz but did not win
     initials = prompt(
       "Would you like to enter your initials to save your high score?"
     );
-    yourScoreEl.textContent = initials + " 0";
     clearInterval(interval);
     questionSetEl.style.display = "none";
     lastEl.style.display = "flex";
+    yourScoreEl.textContent = initials + " 0";
+    var highScore = {
+      initials: initials,
+      score: 0,
+    }
+    highScores.push(highScore);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    showHighScore = JSON.parse(localStorage.getItem('highScores'));
   }
 }
 
